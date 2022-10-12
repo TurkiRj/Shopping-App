@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TestingNew</string>
+    <string name="Thanks">We would like %d to thank you for your order.
+         We’re honored that you choose us.</string>
+</resources>
