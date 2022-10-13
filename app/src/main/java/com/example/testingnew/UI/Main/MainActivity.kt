@@ -17,7 +17,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-//ExampleAdapter.OnItemClickListener
 class MainActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
 
     var listOfProduct: List<Product> = ArrayList(30)
@@ -30,12 +29,8 @@ class MainActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
         ViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
 
-        ViewModel.loadProductsData()
-
-
         ViewModel.productMutableLiveData.observe(this, Observer {
             listOfProduct = it as List<Product>
-            Log.i("turki", "after load")
 
             adapter()
         })
@@ -44,7 +39,6 @@ class MainActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
 
     fun adapter() {
         val adapter = ExampleAdapter(listOfProduct, this)
-        Log.i("turki", "adapter")
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.setHasFixedSize(true)
@@ -53,10 +47,10 @@ class MainActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
     override fun onItemClick(position: Int) {
         val clickedItem: Product = listOfProduct[position]
         val intent = Intent(this, Details::class.java)
-        intent.putExtra("productName", clickedItem.getTitle()!!)
-        intent.putExtra("image", clickedItem.getImage()!!)
-        intent.putExtra("description", clickedItem.getDescription()!!)
-        intent.putExtra("price", clickedItem.getPrice()!!)
+        intent.putExtra("productName", clickedItem.title!!)
+        intent.putExtra("image", clickedItem.image!!)
+        intent.putExtra("description", clickedItem.description!!)
+        intent.putExtra("price", clickedItem.price!!)
         startActivities(arrayOf(intent))
     }
 }
