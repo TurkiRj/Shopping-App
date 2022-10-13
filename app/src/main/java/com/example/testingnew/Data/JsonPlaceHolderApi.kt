@@ -7,6 +7,6 @@ import retrofit2.http.GET
 
 interface JsonPlaceHolderApi {
     @GET("products")
-    suspend fun getProductsApi(): Response<Products?>?
+    suspend fun getProductsApi(): Products
 }
 
