@@ -10,16 +10,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrieveProducts {
     val BASE_URL = "https://dummyjson.com/"
-    
-    fun retrieveProductsData() : JsonPlaceHolderApi{
+
+    fun retrieveProductsData(): JsonPlaceHolderApi {
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+            .create(JsonPlaceHolderApi::class.java)
 
-        val postInterface = retrofit.create(JsonPlaceHolderApi::class.java)
-
-        return postInterface as JsonPlaceHolderApi
-        }
+        return retrofit as JsonPlaceHolderApi
     }
+}

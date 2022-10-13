@@ -2,12 +2,14 @@ package com.example.testingnew.UI.Main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.testingnew.Data.RetrieveProducts
 import com.example.testingnew.Model.Product
 import com.example.testingnew.Model.Products
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import retrofit2.*
 
 class MainViewModel : ViewModel() {
 
@@ -17,21 +19,13 @@ class MainViewModel : ViewModel() {
     private val retrieveProductsData = RetrieveProducts().retrieveProductsData()
 
 
-    fun getPosts() {
-        val call = retrieveProductsData.getPosts()
-        call!!.enqueue(object : Callback<Products?> {
-
-            override fun onResponse(call: Call<Products?>, response: Response<Products?>) {
-                if (!response.isSuccessful) {
-                    return
-                }
-                productMutableLiveData.value = response.body()!!.getProduct()
+    fun loadProductsData() {
+        viewModelScope.launch(Dispatchers.Main) {
+            val response = retrieveProductsData.getProductsApi()!!
+            if (response.isSuccessful) {
+                productMutableLiveData.value = response!!.body()!!.getProduct()
             }
 
-            override fun onFailure(call: Call<Products?>, t: Throwable) {
-                TODO("Not yet implemented")
-                // we have to put Toast statement here
-            }
-        })
+        }
     }
 }

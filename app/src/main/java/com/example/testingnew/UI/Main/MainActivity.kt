@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
         ViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
 
-        ViewModel.getPosts()
+        ViewModel.loadProductsData()
 
 
         ViewModel.productMutableLiveData.observe(this, Observer {
