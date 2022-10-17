@@ -11,22 +11,24 @@ import com.example.testingnew.*
 import com.example.testingnew.Model.Product
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.lifecycle.ViewModelProvider
+import com.example.testingnew.Repository.Repository
 import com.example.testingnew.UI.Details
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
 
     var listOfProduct: List<Product> = ArrayList(30)
-    lateinit var ViewModel: MainViewModel
+    val ViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        ViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        //ViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
 
         ViewModel.productMutableLiveData.observe(this, Observer {

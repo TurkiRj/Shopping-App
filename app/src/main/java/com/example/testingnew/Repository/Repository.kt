@@ -25,7 +25,7 @@ class Repository {
             .create(JsonPlaceHolderApi::class.java)
 
         GlobalScope.launch(Dispatchers.Main) {
-            val response = retrofit.getProductsApi()!!
+            val response = retrofit.getProductsApi()
             repositoryLiveData.value = response.listOfProduct
 
         }
