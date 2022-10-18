@@ -3,15 +3,16 @@ package com.example.testingnew.Repository
 import androidx.lifecycle.MutableLiveData
 import com.example.testingnew.Data.JsonPlaceHolderApi
 import com.example.testingnew.Model.Product
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+@DelicateCoroutinesApi
 class Repository(private val API: JsonPlaceHolderApi) {
 
-    private var repositoryLiveData: MutableLiveData<List<Product?>?> =
-        MutableLiveData<List<Product?>?>()
-
+    private var repositoryLiveData: MutableLiveData<List<Product>> =
+        MutableLiveData<List<Product>>()
 
     init {
         GlobalScope.launch(Dispatchers.Main) {
@@ -20,8 +21,7 @@ class Repository(private val API: JsonPlaceHolderApi) {
         }
     }
 
-    fun getRepositoryLiveData(): MutableLiveData<List<Product?>?> {
+    fun getRepositoryLiveData(): MutableLiveData<List<Product>> {
         return this.repositoryLiveData
     }
-
 }

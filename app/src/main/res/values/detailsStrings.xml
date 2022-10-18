@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Description">Description: \n \n %s</string>
+    <string name="Price">price : %s$</string>
+</resources>

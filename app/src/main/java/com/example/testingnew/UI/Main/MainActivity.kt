@@ -9,20 +9,23 @@ import com.example.testingnew.*
 import com.example.testingnew.Model.Product
 import kotlinx.android.synthetic.main.activity_main.*
 import com.example.testingnew.UI.Details
+import kotlinx.coroutines.DelicateCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@DelicateCoroutinesApi
 class MainActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
 
     var listOfProduct: List<Product> = ArrayList(30)
-    val ViewModel: MainViewModel by viewModel()
+
+    val viewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
-        ViewModel.productMutableLiveData.observe(this, Observer {
-            listOfProduct = it as List<Product>
+        viewModel.productsLiveData.observe(this, Observer {
+            listOfProduct = it
 
             adapter()
         })
@@ -39,10 +42,10 @@ class MainActivity : AppCompatActivity(), ExampleAdapter.OnItemClickListener {
     override fun onItemClick(position: Int) {
         val clickedItem: Product = listOfProduct[position]
         val intent = Intent(this, Details::class.java)
-        intent.putExtra("productName", clickedItem.title!!)
-        intent.putExtra("image", clickedItem.image!!)
-        intent.putExtra("description", clickedItem.description!!)
-        intent.putExtra("price", clickedItem.price!!)
+        intent.putExtra("productName", clickedItem.name)
+        intent.putExtra("image", clickedItem.image)
+        intent.putExtra("description", clickedItem.description)
+        intent.putExtra("price", clickedItem.price)
         startActivities(arrayOf(intent))
     }
 }

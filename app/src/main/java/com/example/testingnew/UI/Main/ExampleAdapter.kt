@@ -29,8 +29,8 @@ class ExampleAdapter(
     override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
         val currentItem = exampleList[position]
 
-        Picasso.get().load(currentItem!!.image).into(holder.imageView)
-        holder.textView1.text = currentItem!!.title
+        Picasso.get().load(currentItem.image).into(holder.imageView)
+        holder.textView1.text = currentItem.name
     }
 
 
