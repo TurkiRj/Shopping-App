@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.testingnew.R
-import com.example.testingnew.R.string.Description
 import com.example.testingnew.UI.Payment.PaymentPage
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*

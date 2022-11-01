@@ -7,4 +7,3 @@ interface JsonPlaceHolderApi {
     @GET("products")
     suspend fun getProductsApi(): Products
 }
-

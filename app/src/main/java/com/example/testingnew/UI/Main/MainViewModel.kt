@@ -9,11 +9,14 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 
 
 @DelicateCoroutinesApi
-class MainViewModel(private val repository: Repository) : ViewModel() {
+class MainViewModel(repository: Repository) : ViewModel() {
 
-    private val _productsMutableLiveData: MutableLiveData<List<Product>> =
-        repository.getRepositoryLiveData()
+    private val _productsMutableLiveData: MutableLiveData<List<Product>>
 
     val productsLiveData: LiveData<List<Product>>
         get() = _productsMutableLiveData
+
+    init {
+        _productsMutableLiveData = repository.getRepositoryLiveData()
+    }
 }
